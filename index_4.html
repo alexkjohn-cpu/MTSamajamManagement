@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#4F0E0E">
+<title>Christian Education Department of the Marthoma Syrian Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+:root{
+  --pdk:#4F0E0E;--pri:#7B1818;--plt:#9B2424;
+  --gold:#C8A850;--glt:#E8CC70;--gdk:#9A7820;
+  --bg:#F5EDE0;--surf:#FFFFFF;--bdr:#DDD0BB;
+  --txt:#2C1A1A;--mut:#7A6060;
+  --ok:#1B6B3A;--ok-l:#E8F5EC;
+  --err:#C62828;--err-l:#FFEBEE;
+  --warn:#C47000;--warn-l:#FFF3E0;
+  --sh1:0 1px 4px rgba(79,14,14,.08);
+  --sh2:0 10px 30px rgba(79,14,14,.10);
+  --r:10px;--r2:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins','Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--txt);
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+body{
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(200,168,80,.10), transparent 40%),
+    radial-gradient(circle at 88% 92%, rgba(123,24,24,.06), transparent 45%);
+}
+
+/* ── HEADER ── */
+header{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px clamp(16px,5vw,48px);
+  background:linear-gradient(135deg,var(--pdk),var(--pri) 65%,var(--plt));
+  box-shadow:var(--sh1);flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:11px;color:#fff}
+.brand-mark-wrap{width:36px;height:44px;flex-shrink:0}
+.brand-mark-wrap img{width:100%;height:100%;object-fit:contain}
+.brand-mark-wrap svg{width:100%;height:100%}
+.brand-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:18px;line-height:1.15;letter-spacing:.2px}
+.brand-name small{display:block;font-family:'Poppins',sans-serif;font-weight:500;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--glt);margin-top:2px}
+
+.hdr-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.role-select{
+  appearance:none;background:rgba(255,255,255,.08);color:#fff;
+  border:1px solid rgba(255,255,255,.25);border-radius:20px;
+  padding:7px 28px 7px 12px;font-size:12px;font-weight:600;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M0 0l5 6 5-6z' fill='%23E8CC70'/></svg>");
+  background-repeat:no-repeat;background-position:right 10px center;background-size:9px;
+}
+.role-select option{color:var(--txt);background:#fff;font-weight:600}
+.edit-toggle{
+  font-size:12px;font-weight:700;color:var(--pdk);background:var(--glt);
+  border:none;border-radius:20px;padding:7px 14px;display:flex;align-items:center;gap:6px;
+  transition:.2s;white-space:nowrap;
+}
+.edit-toggle:hover{background:#fff}
+.edit-toggle.on{background:var(--ok);color:#fff}
+.edit-toggle[disabled]{opacity:.4;cursor:not-allowed}
+.pending-btn{
+  position:relative;font-size:12px;font-weight:700;color:#fff;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:7px 14px;display:none;align-items:center;gap:6px;
+}
+.pending-btn.show{display:flex}
+.pending-btn .bubble{
+  background:var(--warn);color:#fff;border-radius:20px;font-size:10.5px;font-weight:800;
+  padding:1px 7px;min-width:18px;text-align:center;
+}
+.staff-link{
+  font-size:12px;font-weight:600;color:var(--glt);
+  border:1px solid rgba(232,204,112,.45);border-radius:20px;
+  padding:7px 14px;display:flex;align-items:center;gap:6px;
+  transition:.2s;white-space:nowrap;
+}
+.staff-link:hover{background:rgba(232,204,112,.12);border-color:var(--glt)}
+
+.edit-banner{
+  display:none;background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;
+  text-align:center;font-size:12px;font-weight:700;padding:8px 16px;
+  align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+}
+.edit-banner.show{display:flex}
+
+/* ── HERO ── */
+.hero{
+  padding:clamp(40px,8vw,72px) 20px clamp(36px,6vw,56px);
+  text-align:center;position:relative;overflow:hidden;
+}
+.cross-wrap{width:88px;height:108px;margin:0 auto 20px;position:relative}
+.cross-wrap svg{width:100%;height:100%;overflow:visible}
+.cross-wrap path,.cross-wrap circle,.cross-wrap line{
+  stroke:var(--gold);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+}
+.cross-wrap .fill{fill:var(--gold);stroke:none}
+@media (prefers-reduced-motion:no-preference){
+  .cross-draw{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.6s ease-out forwards .2s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+.eyebrow{
+  font-size:11.5px;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;
+  color:var(--gdk);margin-bottom:10px;
+}
+h1{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(24px,4.6vw,40px);color:var(--pri);line-height:1.15;
+  letter-spacing:.2px;max-width:760px;margin:0 auto;
+}
+.hero-sub{
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(13px,2vw,15px);
+  letter-spacing:1.6px;text-transform:uppercase;color:var(--gdk);margin-top:12px;
+}
+.tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:clamp(19px,3.2vw,26px);color:var(--pdk);margin-top:20px;
+  max-width:520px;margin-left:auto;margin-right:auto;line-height:1.45;
+}
+.hero-rule{
+  width:64px;height:2px;background:var(--gold);margin:26px auto 0;border-radius:2px;
+}
+
+/* ── NAV TILES ── */
+main{max-width:1100px;margin:0 auto;padding:0 20px 30px}
+.section-head{text-align:center;margin-bottom:30px}
+.section-head .eyebrow{margin-bottom:6px}
+.section-head h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(22px,3.6vw,30px);color:var(--pdk)}
+
+.tiles{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+}
+.tile{
+  background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r2);
+  padding:24px 22px 20px;position:relative;overflow:hidden;
+  box-shadow:var(--sh1);transition:box-shadow .22s ease,border-color .22s ease;
+  display:flex;flex-direction:column;gap:10px;
+}
+.tile::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--pri));
+  transform:scaleX(0);transform-origin:left;transition:transform .28s ease;
+}
+.tile:hover{box-shadow:var(--sh2);border-color:var(--gold)}
+.tile:hover::before{transform:scaleX(1)}
+.tile-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.tile-ico{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--pdk),var(--pri));
+  color:var(--glt);display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.tile-edit-btns{display:flex;gap:5px}
+.ic-btn{
+  width:26px;height:26px;border-radius:7px;border:1px solid var(--bdr);background:#fff;
+  color:var(--mut);display:flex;align-items:center;justify-content:center;font-size:11px;transition:.15s;flex-shrink:0;
+}
+.ic-btn:hover{border-color:var(--pri);color:var(--pri)}
+.ic-btn.danger:hover{border-color:var(--err);color:var(--err)}
+.ic-btn.ok:hover{border-color:var(--ok);color:var(--ok)}
+.tile h3{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:19px;color:var(--pri)}
+.tile p{font-size:12.5px;color:var(--mut);line-height:1.55}
+.tile-go{font-size:12px;font-weight:700;color:var(--gdk);display:flex;align-items:center;gap:6px;margin-top:2px}
+.tile-go i{font-size:10px;transition:transform .2s}
+.tile:hover .tile-go i{transform:translateX(3px)}
+
+.subnav-toggle{
+  font-size:11px;font-weight:700;color:var(--mut);display:flex;align-items:center;gap:6px;cursor:pointer;
+  border-top:1px dashed var(--bdr);padding-top:10px;margin-top:2px;
+}
+.subnav-toggle i{font-size:9px;transition:transform .18s}
+.subnav-toggle.open i{transform:rotate(90deg)}
+.subnav-list{display:none;flex-direction:column;gap:5px;margin-top:2px}
+.subnav-list.open{display:flex}
+.subnav-item{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  font-size:12px;padding:6px 9px;border-radius:7px;background:#FBF7EF;border:1px solid var(--bdr);
+}
+.subnav-item .sn-label{color:var(--pri);font-weight:600;flex:1;text-align:left;background:none;border:none;padding:0;display:flex;align-items:center;gap:6px}
+.subnav-item .sn-label:hover{text-decoration:underline}
+.sn-count{font-size:10px;font-weight:700;color:var(--gdk);background:#F0E6C8;border-radius:10px;padding:1px 6px}
+.subnav-item .ic-btn{width:20px;height:20px;font-size:9.5px}
+.subnav-add{
+  font-size:11.5px;font-weight:700;color:var(--gdk);border:1px dashed var(--gold);
+  border-radius:7px;padding:6px 9px;background:#FFFBF0;display:flex;align-items:center;gap:6px;justify-content:center;
+}
+.subnav-add:hover{background:#FFF6DE}
+
+.add-tile{
+  border:2px dashed var(--gold);background:transparent;border-radius:var(--r2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  color:var(--gdk);font-weight:700;font-size:13px;padding:24px;min-height:140px;transition:.2s;
+}
+.add-tile:hover{background:rgba(200,168,80,.08)}
+.add-tile i{font-size:20px}
+
+/* ── FOOTER ── */
+footer{
+  margin-top:56px;padding:34px 20px 30px;text-align:center;
+  border-top:1px solid var(--bdr);
+}
+.verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--pri);max-width:420px;margin:0 auto 6px;line-height:1.6}
+.verse-cite{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);font-weight:600}
+.foot-org{margin-top:20px;font-size:11.5px;color:var(--mut)}
+
+/* ── MODAL ── */
+.ov{display:none;position:fixed;inset:0;background:rgba(44,26,26,.55);z-index:1000;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.ov.show{display:flex}
+.modal{background:#fff;border-radius:var(--r2);width:100%;max-width:440px;box-shadow:var(--sh2);overflow:hidden;margin:auto}
+.modal.wide{max-width:600px}
+.mh{padding:16px 20px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.mh h3{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--pri);font-weight:700}
+.mh button{background:none;border:none;font-size:18px;color:var(--mut)}
+.mb{padding:18px 20px;display:flex;flex-direction:column;gap:13px;max-height:65vh;overflow-y:auto}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
+.fg input,.fg textarea,.fg select{
+  padding:10px 11px;border:1.5px solid var(--bdr);border-radius:8px;font-family:inherit;font-size:13.5px;outline:none;background:#fff;
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--pri)}
+.fg small{color:var(--mut);font-size:11px}
+.mf{padding:14px 20px;border-top:1px solid var(--bdr);display:flex;justify-content:flex-end;gap:8px}
+.btn{padding:9px 16px;border-radius:8px;font-size:13px;font-weight:700;border:none}
+.btn-cancel{background:#F0EAE0;color:var(--txt)}
+.btn-save{background:var(--pri);color:#fff}
+.btn-save:hover{background:var(--pdk)}
+
+/* ── CONTENT VIEWER ── */
+.content-empty{font-size:12.5px;color:var(--mut);text-align:center;padding:20px 10px;background:#FBF7EF;border-radius:10px}
+.ccard{border:1px solid var(--bdr);border-radius:10px;padding:12px 13px;display:flex;flex-direction:column;gap:8px;position:relative}
+.ccard-top{display:flex;align-items:flex-start;gap:10px}
+.ccard-ico{width:32px;height:32px;border-radius:9px;background:#F5EDE0;color:var(--pri);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.ccard-body{flex:1;min-width:0}
+.ccard-title{font-weight:700;font-size:13.5px;color:var(--txt)}
+.ccard-meta{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px;font-weight:600;margin-top:1px}
+.ccard-text{font-size:12.5px;color:var(--mut);line-height:1.5;margin-top:5px;white-space:pre-wrap}
+.ccard-link{font-size:12px;font-weight:700;color:var(--gdk);display:inline-flex;align-items:center;gap:5px;margin-top:5px}
+.ccard-link:hover{text-decoration:underline}
+.ccard-img{width:100%;max-height:180px;object-fit:cover;border-radius:8px;margin-top:4px}
+.ccard-embed{position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;margin-top:4px;background:#000}
+.ccard-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.ccard-actions{display:flex;gap:6px;position:absolute;top:10px;right:10px}
+.badge{font-size:9.5px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:2px 8px;border-radius:20px}
+.badge-pending{background:var(--warn-l);color:var(--warn)}
+.badge-approved{background:var(--ok-l);color:var(--ok)}
+.approve-row{display:flex;gap:7px;margin-top:2px}
+.approve-row .btn{padding:6px 11px;font-size:11.5px}
+.btn-approve{background:var(--ok);color:#fff}
+.btn-reject{background:var(--err);color:#fff}
+.content-add-btn{
+  font-size:12.5px;font-weight:700;color:#fff;background:var(--pri);border-radius:9px;
+  padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.content-add-btn:hover{background:var(--pdk)}
+.field-hide{display:none !important}
+
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--pdk);color:#fff;padding:10px 18px;border-radius:20px;font-size:12.5px;font-weight:600;
+  box-shadow:var(--sh2);z-index:1100;opacity:0;transition:.25s;pointer-events:none;max-width:88vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:640px){
+  .staff-link span{display:none}
+  .staff-link{padding:8px 10px}
+  .role-select{padding:7px 24px 7px 10px;font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-mark-wrap">
+      <img id="brand-logo" src="assets/marthoma-logo.png" alt="Marthoma Syrian Church logo"
+        onerror="this.style.display='none';document.getElementById('brand-logo-fallback').style.display='block'">
+      <svg id="brand-logo-fallback" style="display:none" viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="4" x2="20" y2="32" stroke="#E8CC70" stroke-width="2.6" stroke-linecap="round"/>
+        <line x1="8" y1="15" x2="32" y2="15" stroke="#E8CC70" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="20" cy="4" r="2.6" fill="#E8CC70"/>
+        <circle cx="8" cy="15" r="2.6" fill="#E8CC70"/>
+        <circle cx="32" cy="15" r="2.6" fill="#E8CC70"/>
+        <circle cx="20" cy="32" r="2.6" fill="#E8CC70"/>
+        <line x1="10" y1="39" x2="30" y2="39" stroke="#E8CC70" stroke-width="2" stroke-linecap="round"/>
+        <line x1="13" y1="44" x2="27" y2="44" stroke="#E8CC70" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="brand-name">Mar Thoma SS Samajam<small>Marthoma Sunday School Samajam</small></div>
+  </div>
+  <div class="hdr-actions">
+    <button class="pending-btn" id="pending-btn" onclick="openPendingModal()">
+      <i class="fa-solid fa-bell"></i> Pending <span class="bubble" id="pending-count">0</span>
+    </button>
+    <select class="role-select" id="role-select" onchange="setRole(this.value)" title="Preview as role">
+      <option value="guest">Viewing: Guest</option>
+      <option value="member">Viewing: Member</option>
+      <option value="local">Viewing: Local User</option>
+      <option value="admin">Viewing: Admin</option>
+    </select>
+    <button class="edit-toggle" id="edit-toggle" onclick="toggleEditMode()" disabled>
+      <i class="fa-solid fa-pen"></i> Edit Mode
+    </button>
+    <a class="staff-link" href="marthoma_samajam_v2_8_36_1_2.html">
+      <i class="fa-solid fa-user-shield"></i><span>Staff / Admin Login</span>
+    </a>
+  </div>
+</header>
+<div class="edit-banner" id="edit-banner">
+  <i class="fa-solid fa-circle-info"></i> <span id="edit-banner-txt"></span>
+</div>
+
+<section class="hero">
+  <div class="cross-wrap">
+    <svg viewBox="0 0 96 118">
+      <line class="cross-draw" x1="48" y1="6"  x2="48" y2="72"/>
+      <line class="cross-draw" x1="16" y1="34" x2="80" y2="34"/>
+      <circle class="fill" cx="48" cy="6"  r="5.5"/>
+      <circle class="fill" cx="16" cy="34" r="5.5"/>
+      <circle class="fill" cx="80" cy="34" r="5.5"/>
+      <circle class="fill" cx="48" cy="72" r="5.5"/>
+      <line class="cross-draw" x1="12" y1="86"  x2="84" y2="86"/>
+      <line class="cross-draw" x1="18" y1="97"  x2="78" y2="97"/>
+      <line class="cross-draw" x1="24" y1="108" x2="72" y2="108"/>
+    </svg>
+  </div>
+  <h1>Christian Education Department of the Marthoma Syrian Church</h1>
+  <div class="hero-sub">Mar Thoma Sunday School Samajam</div>
+  <p class="tagline">Come to Jesus; Bring Every Child to Jesus</p>
+  <div class="hero-rule"></div>
+</section>
+
+<main>
+  <div class="section-head">
+    <div class="eyebrow">Explore</div>
+    <h2>Where would you like to go?</h2>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+</main>
+
+<footer>
+  <p class="verse">&ldquo;Blessed are those who have not seen and yet have believed.&rdquo;</p>
+  <div class="verse-cite">John 20:29</div>
+  <div class="foot-org">Mar Thoma Sunday School Samajam</div>
+</footer>
+
+<!-- TILE MODAL -->
+<div class="ov" id="tile-ov">
+  <div class="modal">
+    <div class="mh"><h3 id="tile-modal-title">Edit Section</h3><button onclick="closeModal('tile-ov')">×</button></div>
+    <div class="mb">
+      <div class="fg"><label>Title</label><input id="tf-title" placeholder="e.g. Administration"></div>
+      <div class="fg"><label>Description</label><textarea id="tf-desc" rows="2" placeholder="One short line"></textarea></div>
+      <div class="fg"><label>Link (page or URL)</label><input id="tf-link" placeholder="administration.html"></div>
+      <div class="fg"><label>Icon</label><input id="tf-icon" placeholder="fa-solid fa-building-columns"><small>Font Awesome class — see fontawesome.com/icons</small></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-cancel" onclick="closeModal('tile-ov')">Cancel</button>
+      <button class="btn btn-save" onclick="saveTile()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUBNAV MODAL -->
+<div class="ov" id="sub-ov">
+  <div class="modal">
+    <div class="mh"><h3 id="sub-modal-title">Add Sub-navigation</h3><button onclick="closeModal('sub-ov')">×</button></div>
+    <div class="mb">
+      <div class="fg"><label>Label</label><input id="sf-label" placeholder="e.g. Dioceses"></div>
+      <div class="fg"><label>Link (page or URL)</label><input id="sf-link" placeholder="dioceses.html"></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-cancel" onclick="closeModal('sub-ov')">Cancel</button>
+      <button class="btn btn-save" onclick="saveSubnav()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT VIEWER MODAL (list of content blocks for one sub-navigation item) -->
+<div class="ov" id="content-ov">
+  <div class="modal wide">
+    <div class="mh"><h3 id="content-modal-title">Content</h3><button onclick="closeModal('content-ov')">×</button></div>
+    <div class="mb" id="content-list"></div>
+    <div class="mf" id="content-add-row" style="justify-content:stretch">
+      <button class="content-add-btn" style="width:100%" onclick="openContentItemModal('add')">
+        <i class="fa-solid fa-plus"></i> Add Content
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT ITEM MODAL (add/edit one block) -->
+<div class="ov" id="citem-ov">
+  <div class="modal">
+    <div class="mh"><h3 id="citem-modal-title">Add Content</h3><button onclick="closeModal('citem-ov')">×</button></div>
+    <div class="mb">
+      <div class="fg">
+        <label>Content Type</label>
+        <select id="cf-type" onchange="renderCFields()">
+          <option value="article">Article / Writing</option>
+          <option value="attachment">Attachment (document / file)</option>
+          <option value="weblink">Link to another webpage</option>
+          <option value="video">Video (YouTube or direct link)</option>
+          <option value="picture">Picture</option>
+          <option value="social">Social Media / YouTube channel</option>
+        </select>
+      </div>
+      <div class="fg"><label>Title</label><input id="cf-title" placeholder="e.g. Christmas Camp 2026 Report"></div>
+      <div class="fg" id="cf-platform-wrap"><label>Platform</label>
+        <select id="cf-platform">
+          <option value="facebook">Facebook</option>
+          <option value="instagram">Instagram</option>
+          <option value="x">X / Twitter</option>
+          <option value="youtube">YouTube</option>
+          <option value="whatsapp">WhatsApp</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="fg" id="cf-body-wrap"><label>Writing</label><textarea id="cf-body" rows="4" placeholder="Write the article here…"></textarea></div>
+      <div class="fg" id="cf-url-wrap"><label id="cf-url-label">URL</label><input id="cf-url" placeholder="https://…"><small id="cf-url-hint"></small></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-cancel" onclick="closeModal('citem-ov')">Cancel</button>
+      <button class="btn btn-save" onclick="saveContentItem()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- PENDING APPROVALS MODAL (admin only) -->
+<div class="ov" id="pending-ov">
+  <div class="modal wide">
+    <div class="mh"><h3>Pending Approvals</h3><button onclick="closeModal('pending-ov')">×</button></div>
+    <div class="mb" id="pending-list"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   NAV DATA — in-memory for this session.
+   To persist across reloads once this file is hosted on your
+   own server, wire loadData()/persist() to localStorage or to
+   the same backend your admin system already uses.
+   ============================================================ */
+let navData = [
+  {id:'administration', icon:'fa-solid fa-building-columns', title:'Administration', desc:'Dioceses, schools, centers, teachers and office records.', link:'administration.html',
+   subnav:[
+     {id:'a1', label:'Dioceses', link:'#', content:[]},
+     {id:'a2', label:'Schools & Centers', link:'#', content:[]},
+     {id:'a3', label:'Teachers Directory', link:'#', content:[]},
+     {id:'a4', label:'Office Records', link:'#', content:[]}
+   ]},
+  {id:'programmes', icon:'fa-solid fa-calendar-days', title:'Programmes', desc:'Exams, competitions, camps and the annual calendar.', link:'programmes.html',
+   subnav:[
+     {id:'p1', label:'Annual Calendar', link:'#', content:[]},
+     {id:'p2', label:'Examinations', link:'#', content:[]},
+     {id:'p3', label:'Competitions', link:'#', content:[]},
+     {id:'p4', label:'Camps', link:'#', content:[]}
+   ]},
+  {id:'publications', icon:'fa-solid fa-book-open', title:'Publications', desc:'Magazines, study material and annual reports.', link:'publications.html',
+   subnav:[
+     {id:'pu1', label:'Magazine', link:'#', content:[]},
+     {id:'pu2', label:'Study Material', link:'#', content:[]},
+     {id:'pu3', label:'Annual Report', link:'#', content:[]}
+   ]},
+  {id:'news-events', icon:'fa-solid fa-newspaper', title:'News & Events', desc:'Announcements, results and upcoming gatherings.', link:'news-events.html',
+   subnav:[
+     {id:'n1', label:'Announcements', link:'#', content:[]},
+     {id:'n2', label:'Results', link:'#', content:[]},
+     {id:'n3', label:'Upcoming Events', link:'#', content:[]}
+   ]},
+  {id:'forms', icon:'fa-solid fa-file-signature', title:'Forms', desc:'Registration, applications and downloadable forms.', link:'forms.html',
+   subnav:[
+     {id:'f1', label:'Registration Form', link:'#', content:[]},
+     {id:'f2', label:'Teacher Application', link:'#', content:[]},
+     {id:'f3', label:'Certificate Request', link:'#', content:[]}
+   ]}
+];
+
+/* ROLES
+   guest  — view approved content only, no editing
+   member — view approved content, can submit new content (goes to "pending" for admin review)
+   local  — manage sub-navigation + content directly (auto-approved), cannot touch main 5 sections
+   admin  — full control: main sections, sub-navigation, content, and approve/reject pending items
+*/
+let role = 'guest';
+let editMode = false;
+let openSubnavIds = new Set();
+let _editCtx = {};
+let _contentCtx = {};   // {tileId, subId} for currently open content viewer
+
+const TYPE_META = {
+  article:    {icon:'fa-solid fa-feather-pointed', label:'Article'},
+  attachment: {icon:'fa-solid fa-paperclip',       label:'Attachment'},
+  weblink:    {icon:'fa-solid fa-arrow-up-right-from-square', label:'Web Link'},
+  video:      {icon:'fa-solid fa-circle-play',     label:'Video'},
+  picture:    {icon:'fa-solid fa-image',           label:'Picture'},
+  social:     {icon:'fa-solid fa-share-nodes',     label:'Social'}
+};
+const PLATFORM_ICON = {
+  facebook:'fa-brands fa-facebook', instagram:'fa-brands fa-instagram', x:'fa-brands fa-x-twitter',
+  youtube:'fa-brands fa-youtube', whatsapp:'fa-brands fa-whatsapp', other:'fa-solid fa-link'
+};
+
+function uid(){ return 'id'+Math.random().toString(36).slice(2,9); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escAttr(s){ return esc(s); }
+
+/* ---------- ROLE / EDIT MODE ---------- */
+function setRole(v){
+  role = v;
+  if(role==='guest') editMode = false;
+  const t = document.getElementById('edit-toggle');
+  t.disabled = (role==='guest');
+  t.classList.toggle('on', editMode);
+  document.getElementById('pending-btn').classList.toggle('show', role==='admin');
+  updateEditBanner();
+  render();
+}
+function toggleEditMode(){
+  if(role==='guest') return;
+  editMode = !editMode;
+  const t = document.getElementById('edit-toggle');
+  t.classList.toggle('on', editMode);
+  t.innerHTML = editMode ? '<i class="fa-solid fa-check"></i> Editing' : '<i class="fa-solid fa-pen"></i> Edit Mode';
+  updateEditBanner();
+  render();
+}
+function updateEditBanner(){
+  const b = document.getElementById('edit-banner'); const txt = document.getElementById('edit-banner-txt');
+  const msgs = {
+    admin:'Edit mode — Admin: manage main sections, sub-navigation, content, and approve pending submissions.',
+    local:'Edit mode — Local User: manage sub-navigation and content directly (published immediately).',
+    member:'Edit mode — Member: you can submit new content. It stays "Pending" until an Admin approves it.'
+  };
+  if(editMode && msgs[role]){ txt.textContent = msgs[role]; b.classList.add('show'); }
+  else b.classList.remove('show');
+}
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(window._tt); window._tt = setTimeout(()=>el.classList.remove('show'), 2400);
+}
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+
+/* ---------- TILE CRUD — admin only ---------- */
+function openTileModal(mode, tileId){
+  if(role!=='admin'){ toast('Only Admins can manage main sections.'); return; }
+  _editCtx = {mode, tileId};
+  const tile = navData.find(t=>t.id===tileId);
+  document.getElementById('tile-modal-title').textContent = mode==='add' ? 'Add Section' : 'Edit Section';
+  document.getElementById('tf-title').value = tile ? tile.title : '';
+  document.getElementById('tf-desc').value  = tile ? tile.desc  : '';
+  document.getElementById('tf-link').value  = tile ? tile.link  : '';
+  document.getElementById('tf-icon').value  = tile ? tile.icon  : 'fa-solid fa-star';
+  document.getElementById('tile-ov').classList.add('show');
+}
+function saveTile(){
+  const title = document.getElementById('tf-title').value.trim();
+  if(!title){ toast('Title is required.'); return; }
+  const desc = document.getElementById('tf-desc').value.trim();
+  const link = document.getElementById('tf-link').value.trim() || '#';
+  const icon = document.getElementById('tf-icon').value.trim() || 'fa-solid fa-star';
+  if(_editCtx.mode==='add'){ navData.push({id:uid(), icon, title, desc, link, subnav:[]}); toast('Section added.'); }
+  else { const tile = navData.find(t=>t.id===_editCtx.tileId); Object.assign(tile, {icon, title, desc, link}); toast('Section updated.'); }
+  closeModal('tile-ov'); render();
+}
+function deleteTile(tileId){
+  const tile = navData.find(t=>t.id===tileId);
+  if(!confirm('Remove "'+tile.title+'" and everything inside it? This cannot be undone.')) return;
+  navData = navData.filter(t=>t.id!==tileId);
+  toast('Section removed.'); render();
+}
+
+/* ---------- SUB-NAVIGATION CRUD — admin + local ---------- */
+function openSubnavModal(mode, tileId, subId){
+  if(!(role==='admin'||role==='local')){ toast('Only Admins and Local Users can manage sub-navigation.'); return; }
+  _editCtx = {mode, tileId, subId};
+  const tile = navData.find(t=>t.id===tileId);
+  const sub = subId ? tile.subnav.find(s=>s.id===subId) : null;
+  document.getElementById('sub-modal-title').textContent = mode==='add' ? 'Add Sub-navigation' : 'Edit Sub-navigation';
+  document.getElementById('sf-label').value = sub ? sub.label : '';
+  document.getElementById('sf-link').value  = sub ? sub.link  : '';
+  document.getElementById('sub-ov').classList.add('show');
+}
+function saveSubnav(){
+  const label = document.getElementById('sf-label').value.trim();
+  if(!label){ toast('Label is required.'); return; }
+  const link = document.getElementById('sf-link').value.trim() || '#';
+  const tile = navData.find(t=>t.id===_editCtx.tileId);
+  if(_editCtx.mode==='add'){ tile.subnav.push({id:uid(), label, link, content:[]}); openSubnavIds.add(tile.id); toast('Sub-navigation added.'); }
+  else { const sub = tile.subnav.find(s=>s.id===_editCtx.subId); Object.assign(sub, {label, link}); toast('Sub-navigation updated.'); }
+  closeModal('sub-ov'); render();
+}
+function deleteSubnav(tileId, subId){
+  const tile = navData.find(t=>t.id===tileId);
+  const sub = tile.subnav.find(s=>s.id===subId);
+  if(!confirm('Remove "'+sub.label+'" and all its content?')) return;
+  tile.subnav = tile.subnav.filter(s=>s.id!==subId);
+  toast('Sub-navigation removed.'); render();
+}
+function toggleSubnav(tileId){
+  if(openSubnavIds.has(tileId)) openSubnavIds.delete(tileId); else openSubnavIds.add(tileId);
+  render();
+}
+
+/* ---------- CONTENT VIEWER (per sub-navigation item) ---------- */
+function findSub(tileId, subId){ const tile = navData.find(t=>t.id===tileId); return {tile, sub: tile.subnav.find(s=>s.id===subId)}; }
+
+function openContentViewer(tileId, subId){
+  _contentCtx = {tileId, subId};
+  const {tile, sub} = findSub(tileId, subId);
+  document.getElementById('content-modal-title').textContent = tile.title + ' — ' + sub.label;
+  renderContentList();
+  const canAdd = editMode && (role==='admin'||role==='local'||role==='member');
+  document.getElementById('content-add-row').style.display = canAdd ? '' : 'none';
+  document.getElementById('content-ov').classList.add('show');
+}
+
+function visibleContent(sub){
+  if(role==='admin' || role==='local') return sub.content;
+  // guest + member only ever see approved items (member also sees their own pending submissions)
+  return sub.content.filter(c => c.status==='approved' || (role==='member' && c.status==='pending'));
+}
+
+function contentCardHTML(tileId, subId, c){
+  const meta = TYPE_META[c.type];
+  const canManage = (role==='admin') || (role==='local') || (role==='member' && c.status==='pending');
+  let body = '';
+  if(c.type==='article'){
+    body = `<div class="ccard-text">${esc(c.body||'').slice(0,320)}${(c.body||'').length>320?'…':''}</div>`;
+  } else if(c.type==='picture'){
+    body = c.url ? `<img class="ccard-img" src="${escAttr(c.url)}" alt="${escAttr(c.title)}" onerror="this.style.display='none'">` : '';
+  } else if(c.type==='video'){
+    const embed = ytEmbedUrl(c.url);
+    body = embed ? `<div class="ccard-embed"><iframe src="${escAttr(embed)}" allowfullscreen></iframe></div>`
+                 : (c.url ? `<a class="ccard-link" href="${escAttr(c.url)}" target="_blank" rel="noopener"><i class="fa-solid fa-play"></i> Watch video</a>` : '');
+  } else if(c.type==='social'){
+    const pic = PLATFORM_ICON[c.platform]||'fa-solid fa-link';
+    body = c.url ? `<a class="ccard-link" href="${escAttr(c.url)}" target="_blank" rel="noopener"><i class="${pic}"></i> Visit ${esc(c.platform)}</a>` : '';
+  } else if(c.type==='weblink'){
+    body = c.url ? `<a class="ccard-link" href="${escAttr(c.url)}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open page</a>` : '';
+  } else if(c.type==='attachment'){
+    body = c.url ? `<a class="ccard-link" href="${escAttr(c.url)}" target="_blank" rel="noopener"><i class="fa-solid fa-paperclip"></i> Open attachment</a>` : '';
+  }
+
+  const statusBadge = c.status==='pending'
+    ? `<span class="badge badge-pending">Pending</span>` : `<span class="badge badge-approved">Published</span>`;
+
+  const actions = canManage ? `
+    <div class="ccard-actions">
+      <button class="ic-btn" title="Edit" onclick="openContentItemModal('edit','${c.id}')"><i class="fa-solid fa-pen"></i></button>
+      <button class="ic-btn danger" title="Remove" onclick="deleteContentItem('${c.id}')"><i class="fa-solid fa-trash"></i></button>
+    </div>` : '';
+
+  const approveRow = (role==='admin' && c.status==='pending') ? `
+    <div class="approve-row">
+      <button class="btn btn-approve" onclick="approveContentItem('${tileId}','${subId}','${c.id}')"><i class="fa-solid fa-check"></i> Approve</button>
+      <button class="btn btn-reject" onclick="rejectContentItem('${tileId}','${subId}','${c.id}')"><i class="fa-solid fa-xmark"></i> Reject</button>
+    </div>` : '';
+
+  return `
+  <div class="ccard">
+    ${actions}
+    <div class="ccard-top">
+      <div class="ccard-ico"><i class="${meta.icon}"></i></div>
+      <div class="ccard-body">
+        <div class="ccard-title">${esc(c.title)}</div>
+        <div class="ccard-meta">${meta.label} ${statusBadge}</div>
+      </div>
+    </div>
+    ${body}
+    ${approveRow}
+  </div>`;
+}
+
+function renderContentList(){
+  const {tileId, subId} = _contentCtx;
+  const {sub} = findSub(tileId, subId);
+  const items = visibleContent(sub);
+  const list = document.getElementById('content-list');
+  list.innerHTML = items.length
+    ? items.map(c=>contentCardHTML(tileId, subId, c)).join('')
+    : `<div class="content-empty"><i class="fa-solid fa-inbox"></i><br>Nothing here yet.</div>`;
+}
+
+/* ---------- CONTENT ITEM add/edit ---------- */
+function renderCFields(){
+  const type = document.getElementById('cf-type').value;
+  document.getElementById('cf-body-wrap').classList.toggle('field-hide', type!=='article');
+  document.getElementById('cf-platform-wrap').classList.toggle('field-hide', type!=='social');
+  document.getElementById('cf-url-wrap').classList.toggle('field-hide', type==='article');
+  const labels = {
+    attachment:['File / Document URL','Paste a link to a PDF, Google Drive file, etc.'],
+    weblink:['Page URL','Opens in a new tab.'],
+    video:['Video URL','Paste a YouTube link to embed it automatically.'],
+    picture:['Image URL','Direct link to the image file.'],
+    social:['Profile / Channel URL','']
+  };
+  const l = labels[type];
+  if(l){ document.getElementById('cf-url-label').textContent = l[0]; document.getElementById('cf-url-hint').textContent = l[1]; }
+}
+
+function openContentItemModal(mode, contentId){
+  if(role==='guest'){ toast('Log in as Member, Local User or Admin to add content.'); return; }
+  _editCtx = {mode, contentId};
+  const {sub} = findSub(_contentCtx.tileId, _contentCtx.subId);
+  const c = contentId ? sub.content.find(x=>x.id===contentId) : null;
+  document.getElementById('citem-modal-title').textContent = mode==='add' ? 'Add Content' : 'Edit Content';
+  document.getElementById('cf-type').value = c ? c.type : 'article';
+  document.getElementById('cf-title').value = c ? c.title : '';
+  document.getElementById('cf-body').value = c ? (c.body||'') : '';
+  document.getElementById('cf-url').value = c ? (c.url||'') : '';
+  document.getElementById('cf-platform').value = c ? (c.platform||'facebook') : 'facebook';
+  renderCFields();
+  document.getElementById('citem-ov').classList.add('show');
+}
+function saveContentItem(){
+  const title = document.getElementById('cf-title').value.trim();
+  if(!title){ toast('Title is required.'); return; }
+  const type = document.getElementById('cf-type').value;
+  const body = document.getElementById('cf-body').value.trim();
+  const url = document.getElementById('cf-url').value.trim();
+  const platform = document.getElementById('cf-platform').value;
+  const {sub} = findSub(_contentCtx.tileId, _contentCtx.subId);
+
+  if(_editCtx.mode==='add'){
+    const status = (role==='member') ? 'pending' : 'approved';
+    sub.content.push({id:uid(), type, title, body, url, platform, status, addedBy:role});
+    toast(status==='pending' ? 'Submitted — waiting for Admin approval.' : 'Content added.');
+  } else {
+    const item = sub.content.find(x=>x.id===_editCtx.contentId);
+    Object.assign(item, {type, title, body, url, platform});
+    toast('Content updated.');
+  }
+  closeModal('citem-ov'); renderContentList(); render();
+}
+function deleteContentItem(contentId){
+  const {sub} = findSub(_contentCtx.tileId, _contentCtx.subId);
+  if(!confirm('Remove this item?')) return;
+  sub.content = sub.content.filter(x=>x.id!==contentId);
+  toast('Content removed.'); renderContentList(); render();
+}
+function approveContentItem(tileId, subId, contentId){
+  const {sub} = findSub(tileId, subId);
+  sub.content.find(x=>x.id===contentId).status = 'approved';
+  toast('Approved and published.'); renderContentList(); renderPendingList(); render();
+}
+function rejectContentItem(tileId, subId, contentId){
+  const {sub} = findSub(tileId, subId);
+  if(!confirm('Reject and delete this submission?')) return;
+  sub.content = sub.content.filter(x=>x.id!==contentId);
+  toast('Submission rejected.'); renderContentList(); renderPendingList(); render();
+}
+
+/* ---------- PENDING APPROVALS (admin) ---------- */
+function allPending(){
+  const out = [];
+  navData.forEach(tile=>tile.subnav.forEach(sub=>sub.content.forEach(c=>{
+    if(c.status==='pending') out.push({tileId:tile.id, subId:sub.id, tileTitle:tile.title, subLabel:sub.label, c});
+  })));
+  return out;
+}
+function openPendingModal(){ renderPendingList(); document.getElementById('pending-ov').classList.add('show'); }
+function renderPendingList(){
+  const items = allPending();
+  document.getElementById('pending-count').textContent = items.length;
+  const list = document.getElementById('pending-list');
+  list.innerHTML = items.length ? items.map(x=>`
+    <div class="ccard">
+      <div class="ccard-top">
+        <div class="ccard-ico"><i class="${TYPE_META[x.c.type].icon}"></i></div>
+        <div class="ccard-body">
+          <div class="ccard-title">${esc(x.c.title)}</div>
+          <div class="ccard-meta">${esc(x.tileTitle)} → ${esc(x.subLabel)} · ${TYPE_META[x.c.type].label}</div>
+        </div>
+      </div>
+      <div class="approve-row">
+        <button class="btn btn-approve" onclick="approveContentItem('${x.tileId}','${x.subId}','${x.c.id}')"><i class="fa-solid fa-check"></i> Approve</button>
+        <button class="btn btn-reject" onclick="rejectContentItem('${x.tileId}','${x.subId}','${x.c.id}')"><i class="fa-solid fa-xmark"></i> Reject</button>
+      </div>
+    </div>`).join('') : `<div class="content-empty"><i class="fa-solid fa-circle-check"></i><br>No pending submissions.</div>`;
+}
+
+/* ---------- helpers ---------- */
+function ytEmbedUrl(url){
+  if(!url) return null;
+  let m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{6,})/);
+  return m ? 'https://www.youtube.com/embed/'+m[1] : null;
+}
+
+/* ---------- RENDER MAIN NAV ---------- */
+function render(){
+  const wrap = document.getElementById('tiles');
+  const canEditTiles = editMode && role==='admin';
+  const canEditSubStructure = editMode && (role==='admin' || role==='local');
+  document.getElementById('pending-count').textContent = allPending().length;
+
+  wrap.innerHTML = navData.map(tile=>{
+    const open = openSubnavIds.has(tile.id);
+    const subItems = tile.subnav.map(s=>{
+      const count = visibleContent(s).length;
+      return `
+      <div class="subnav-item">
+        <button class="sn-label" onclick="openContentViewer('${tile.id}','${s.id}')">
+          ${esc(s.label)} ${count ? `<span class="sn-count">${count}</span>` : ''}
+        </button>
+        ${canEditSubStructure ? `
+          <button class="ic-btn" title="Edit sub-navigation" onclick="openSubnavModal('edit','${tile.id}','${s.id}')"><i class="fa-solid fa-pen"></i></button>
+          <button class="ic-btn danger" title="Remove sub-navigation" onclick="deleteSubnav('${tile.id}','${s.id}')"><i class="fa-solid fa-xmark"></i></button>
+        ` : ''}
+      </div>`;
+    }).join('');
+
+    return `
+    <div class="tile">
+      <div class="tile-top">
+        <div class="tile-ico"><i class="${esc(tile.icon)}"></i></div>
+        ${canEditTiles ? `
+          <div class="tile-edit-btns">
+            <button class="ic-btn" title="Edit section" onclick="openTileModal('edit','${tile.id}')"><i class="fa-solid fa-pen"></i></button>
+            <button class="ic-btn danger" title="Remove section" onclick="deleteTile('${tile.id}')"><i class="fa-solid fa-trash"></i></button>
+          </div>` : ''}
+      </div>
+      <h3>${esc(tile.title)}</h3>
+      <p>${esc(tile.desc)}</p>
+      <a class="tile-go" href="${escAttr(tile.link)}">Open <i class="fa-solid fa-arrow-right"></i></a>
+
+      <div class="subnav-toggle ${open?'open':''}" onclick="toggleSubnav('${tile.id}')">
+        <i class="fa-solid fa-chevron-right"></i> Sub-navigation (${tile.subnav.length})
+      </div>
+      <div class="subnav-list ${open?'open':''}">
+        ${subItems}
+        ${canEditSubStructure ? `<button class="subnav-add" onclick="openSubnavModal('add','${tile.id}')"><i class="fa-solid fa-plus"></i> Add sub-navigation</button>` : ''}
+      </div>
+    </div>`;
+  }).join('') + (canEditTiles ? `
+    <button class="add-tile" onclick="openTileModal('add', null)">
+      <i class="fa-solid fa-plus"></i> Add Section
+    </button>` : '');
+}
+
+render();
+</script>
+
+</body>
+</html>
